@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ResponsivePopover title="{i18n>chooseAPeriod}"
+					   showHeader="true" 
+					   class="sapUiPopupWithPadding" 
+					   placement="Auto" 
+					   modal="true">
+		<beginButton>
+			<Button text="{i18n>confirm}" press="onConfirmPrint" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>cancelar}" press="onClosePopOver" />
+		</endButton>
+		<content>
+			<VBox class="sapUiSmallMarginEnd">
+				<CheckBox id="checkbox1p" enabled="{checkboxprint>/checkbox1}" text="{i18n>primeiroPeriodo}"/>
+				<CheckBox id="checkbox2p" enabled="{checkboxprint>/checkbox2}" text="{i18n>segundoPeriodo}"/>
+				<CheckBox id="checkbox3p" enabled="{checkboxprint>/checkbox3}" text="{i18n>terceiroPeriodo}"/>
+			</VBox>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

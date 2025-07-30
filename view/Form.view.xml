@@ -1,0 +1,216 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" 
+		  xmlns:layout="sap.ui.layout" 
+		  xmlns:form="sap.ui.layout.form" 
+		  xmlns:core="sap.ui.core" 
+		  xmlns="sap.m" 
+		  controllerName="agendamento.telebras.controller.Form">
+    <App id="app">
+		<pages>
+			<Page id="page" title="{i18n>title}" showNavButton="true" navButtonPress="onNavBack">
+				<ObjectHeader xmlns="sap.m" title="{Header>/name}" number="" id="header0" fullScreenOptimized="false" icon="{path: 'Header>/photo'}" titleLevel="Auto" responsive="true" intro="Cargo: {path: 'Header>/role'}">
+					<attributes>
+						<ObjectAttribute text=" {path: 'Header>/roleDesc'}" id="cargo" title="Posição "/>
+						<ObjectAttribute text=" {path: 'Header>/email'}" id="email" title="E-mail " active="true" press="onOpenEmail"/>
+						<ObjectAttribute text=" {path: 'Header>/inicioDeducao'}" id="inicioDeducao" title="Início da Dedução " active="false" press="onOpenEmail"/>
+						<ObjectAttribute text=" {path: 'Header>/fimDeducao'}" id="fimDeducao" title="Fim da Dedução " active="false" press="onOpenEmail"/>
+					</attributes>
+				</ObjectHeader>
+				<layout:BlockLayout background="Default" visible="true">
+						<layout:content>
+							<layout:BlockLayoutRow scrollable="false">
+								<layout:content>
+									<layout:BlockLayoutCell class="sapUiNoContentPadding ssapUiSmallMarginEnd sapUiSmallMarginBegin" width="1" title="" titleAlignment="Center" titleLevel="Auto">
+										<layout:content>
+											<form:Form id="idForm1" width="100%" editable="true" visible="true">
+												<form:title>
+													<core:Title text="{i18n>primeiroPeriodo}" level="Auto"/>
+												</form:title>
+												<form:formContainers>
+													<form:FormContainer visible="true">
+														<form:formElements>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>statusPlanejamento}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Input editable="false" enabled="true" visible="true" width="auto" valueState="None" value="{path: 'FormDetail>/Statptx'}" id="status1"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>diasAusencia}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Input liveChange="onChange" id="daysAbsence1" type="Number" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true" maxLength="2"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>inicioFerias}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<DatePicker id="datePicker1" placeholder="00/00/0000" change="onChangeDate" class="sapUiSmallMarginBottom" enabled="true"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>fimFerias}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Input id="endAbsence1" placeholder="00/00/0000" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto" valueHelpOnly="false" required="false" maxLength="0"/>
+																</form:fields>
+																<form:fields>
+																	<CheckBox text="{i18n>13salario}" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="adiantamento1"/>																
+																</form:fields>																	
+															</form:FormElement>
+														</form:formElements>
+														<form:title/>
+													</form:FormContainer>
+												</form:formContainers>
+												<form:layout>
+													<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+												</form:layout>
+											</form:Form>
+										</layout:content>
+									</layout:BlockLayoutCell>
+									<layout:BlockLayoutCell class="sapUiNoContentPadding sapUiSmallMarginEnd sapUiSmallMarginBegin" width="1" title="" titleAlignment="Begin" titleLevel="Auto">
+										<layout:content>
+											<form:Form width="100%" editable="true" visible="true">
+												<form:title>
+													<core:Title text="{i18n>segundoPeriodo}" level="Auto"/>
+												</form:title>
+												<form:formContainers>
+													<form:FormContainer visible="true">
+														<form:formElements>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>statusPlanejamento}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Input editable="false" enabled="true" visible="true" width="auto" valueState="None" id="status2" value="{= ${FormDetail>/Statp2} === 1 ? ${i18n>planejado} : ${FormDetail>/Statp2} === 2 ? ${i18n>aprovado} : ${i18n>concluido}}"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>diasAusencia}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Input liveChange="onChange" id="daysAbsence2" type="Number" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true" maxLength="0"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>inicioFerias}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<DatePicker id="datePicker2" placeholder="00/00/0000" change="onChangeDate" class="sapUiSmallMarginBottom" enabled="true"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>fimFerias}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Input id="endAbsence2" placeholder="00/00/0000" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
+																</form:fields>
+																<form:fields>
+																	<CheckBox text="{i18n>13salario}" selected="false" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="adiantamento2"/>																
+																</form:fields>																	
+															</form:FormElement>
+														</form:formElements>
+														<form:title/>
+													</form:FormContainer>
+												</form:formContainers>
+												<form:layout>
+													<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+												</form:layout>
+											</form:Form>
+										</layout:content>
+									</layout:BlockLayoutCell>
+									<layout:BlockLayoutCell class="sapUiNoContentPadding sapUiSmallMarginEnd sapUiSmallMarginBegin" width="1" title="" titleAlignment="Begin" titleLevel="Auto">
+										<layout:content>
+											<form:Form width="100%" editable="true" visible="true">
+												<form:title>
+													<core:Title text="{i18n>terceiroPeriodo}" level="Auto"/>
+												</form:title>
+												<form:formContainers>
+													<form:FormContainer visible="true">
+														<form:formElements>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>statusPlanejamento}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Input editable="false" enabled="true" visible="true" width="auto" valueState="None" id="status3" value="{= ${FormDetail>/Statp3} === 1 ? ${i18n>planejado} : ${FormDetail>/Statp3} === 2 ? ${i18n>aprovado} : ${i18n>concluido}}"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>diasAusencia}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Input liveChange="onChange" id="daysAbsence3" type="Number" showValueHelp="true" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="true" valueStateText="Invalid entry" maxLength="0"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>inicioFerias}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<DatePicker id="datePicker3" placeholder="00/00/0000" change="onChangeDate" class="sapUiSmallMarginBottom" enabled="true"/>
+																</form:fields>
+															</form:FormElement>
+															<form:FormElement visible="true">
+																<form:label>
+																	<Label text="{i18n>fimFerias}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+																</form:label>
+																<form:fields>
+																	<Input id="endAbsence3" placeholder="00/00/0000" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
+																</form:fields>
+																<form:fields>
+																	<CheckBox text="{i18n>13salario}" selected="false" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="adiantamento3" select="handleSelectCheckBox"/>																
+																</form:fields>																
+															</form:FormElement>
+														</form:formElements>
+														<form:title/>
+													</form:FormContainer>
+												</form:formContainers>
+												<form:layout>
+													<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+												</form:layout>
+											</form:Form>
+										</layout:content>
+									</layout:BlockLayoutCell>
+								</layout:content>
+							</layout:BlockLayoutRow>
+							<layout:BlockLayoutRow scrollable="false">
+								<layout:content>
+									<layout:BlockLayoutCell class="sapUiNoContentPadding sapUiSmallMarginEnd sapUiSmallMarginBegin" width="4" title="" titleAlignment="Begin" titleLevel="Auto">
+										<layout:content>
+											<VBox alignItems="Stretch" direction="Column" fitContainer="true" width="50%" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+												<items>
+													<CheckBox select="onSelectCheckBox" text="{i18n>abonoPecuniario}" selected="false" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="abono" />
+													<!-- <CheckBox text="{i18n>13salario}" selected="false" visible="true" width="auto" textDirection="Inherit" wrapping="false" useEntireWidth="true" id="adiantamento"/> -->
+												</items>
+												<layoutData/>
+											</VBox>
+										</layout:content>
+									</layout:BlockLayoutCell>
+								</layout:content>
+							</layout:BlockLayoutRow>
+						</layout:content>
+				</layout:BlockLayout>	
+				<footer>	
+						<Bar id="bar9">	
+							<contentRight>
+								<Button text="{i18n>save}" tooltip="{i18n>saveVacation}" id="save" icon="sap-icon://save" type="Accept" press="onSave"/>	
+								<Button visible="false" text="{i18n>delete}" tooltip="{i18n>deleteVacation}" id="delete" icon="sap-icon://delete" type="Reject" press="onDelete"/>	
+								<Button visible="false" text="{i18n>edit}" tooltip="{i18n>editVacation}" id="edit" icon="sap-icon://request" press="onEdit" class="borderButton"/>	
+								<Button text="{i18n>print}" tooltip="{i18n>printVacation}" id="print" icon="sap-icon://print" type="Ghost" press="onPrintPopOverPrint" enabled="false"/>	
+							</contentRight>	
+						</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>	
+</mvc:View>

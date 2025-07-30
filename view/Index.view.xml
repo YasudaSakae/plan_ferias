@@ -1,0 +1,82 @@
+<mvc:View
+xmlns:core="sap.ui.core"
+xmlns:mvc="sap.ui.core.mvc"
+xmlns:unified="sap.ui.unified"
+xmlns="sap.m"
+xmlns:l="sap.ui.layout"
+controllerName="agendamento.telebras.controller.Index"
+displayBlock="true">
+  <Shell id="shell">
+    <App id="app">
+      <pages>
+        <Page id="page" title="{i18n>title}">
+          <content>
+            <l:DynamicSideContent id="DynamicSideContent"
+                                  class="sapUiDSCExplored sapUiContentPadding"
+                                  sideContentVisibility="AlwaysShow"
+                                  showSideContent="false"
+                                  containerQuery="true">
+              <VBox class="sapUiSmallMargin">
+                <PlanningCalendar id="PC1"
+                                  startDate="{path: '/startDate'}"
+                                  rows="{path: '/people'}"
+                                  appointmentsVisualization="Filled"
+                                  appointmentSelect="handleAppointmentSelect"
+                                  showEmptyIntervalHeaders="false"
+                                  stickyHeader="true"
+                                  showWeekNumbers="true"
+                                  legend="PlanningCalendarLegend">
+                  <toolbarContent>
+                    <ActionSelect id="select1" items="{path: 'absences_type>/'}" change="onChangeFilter">
+                      <items>
+                        <core:Item key="{absences_type>Awart}" text="{absences_type>AwartTx}" />
+                      </items>
+                    </ActionSelect>
+                    <ToggleButton press="openLegend" icon="sap-icon://legend" tooltip="{i18n>TooltipLegenda}"/>
+                    <Title text="{i18n>apontamentoEquipe}" titleStyle="H4"/>
+                  </toolbarContent>
+                  <rows>
+                    <PlanningCalendarRow icon="{pic}"
+                                         title="{name}"
+                                         text="{role}"
+                                         appointments="{path : 'appointments', templateShareable: false}"
+                                         intervalHeaders="{path: 'headers', templateShareable: false}"
+                                         key="{pernr}">
+                      <customData>
+                        <core:CustomData key="emp-name" value="{name}" writeToDom="true"/>
+                      </customData>
+                      <appointments>
+                        <unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" title="{title}" text="{info}" tentative="{tentative}" color="{color}" />
+                      </appointments>
+                      <intervalHeaders>
+                        <unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" title="{title}" color="{color}" />
+                      </intervalHeaders>
+                    </PlanningCalendarRow>
+                  </rows>
+                </PlanningCalendar>
+              </VBox>
+              <l:sideContent width="100px">
+                <PlanningCalendarLegend id="PlanningCalendarLegend" itemsHeader="{i18n>HeaderLegend}" standardItems="Today">
+                  <items>
+                    <unified:CalendarLegendItem text="{i18n>RedStatus}" color="#F24A33"/>
+                    <unified:CalendarLegendItem text="{i18n>BlueStatus}" color="#574bdd"/>
+                    <unified:CalendarLegendItem text="{i18n>YellowStatus}" color="#f9fb0b"/>
+                    <unified:CalendarLegendItem text="{i18n>GreenStatus}" color="#31c912"/>
+                  </items>
+                </PlanningCalendarLegend>
+              </l:sideContent>
+          </l:DynamicSideContent>
+          </content>
+          <footer>
+            <Toolbar width="100%" id="toolbar1">
+              <content>
+                <ToolbarSpacer />
+                <Button xmlns="sap.m" text="{i18n>visualizarPeriodo}" id="button1" press=".validateNavigationRules" icon="sap-icon://appointment"/>
+              </content>
+            </Toolbar>
+          </footer>
+        </Page>
+      </pages>
+    </App>
+  </Shell>
+</mvc:View>

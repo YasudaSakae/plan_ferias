@@ -1,0 +1,81 @@
+<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	controllerName="agendamento.telebras.controller.Contingentes"
+	displayBlock="true">
+	<Shell>
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}" showNavButton="true" navButtonPress="onNavBack">
+					<ObjectHeader
+						xmlns="sap.m"
+						title="{Header>/name}"
+						number=""
+						id="header0"
+						fullScreenOptimized="false"
+						icon="{path: 'Header>/photo'}"
+						titleLevel="Auto"
+						responsive="true"
+						intro="Cargo: {path: 'Header>/role'}">
+						<attributes>
+							<ObjectAttribute text=" {path: 'Header>/roleDesc'}" id="cargo" title="Posicao "/>
+							<ObjectAttribute text=" {path: 'Header>/email'}" id="email" title="E-mail " active="true" press="onOpenEmail"/>
+							</attributes>
+					</ObjectHeader>
+					<Table enableBusyIndicator="true" noDataText="{i18n>noData}" id="table" alternateRowColors="true" items="{path: 'Contigentes>/'}" mode="None">
+						<columns>
+							<Column id="column0" minScreenWidth="Tablet" demandPopin="true">
+								<header>
+									<Label text="{i18n>inicioContagem}" id="inicioContagem"/>
+								</header>
+							</Column>
+							<Column id="column1" minScreenWidth="Tablet" demandPopin="true" >
+								<header>
+									<Label text="{i18n>fimContagem}" id="fimContagem" />
+								</header>
+							</Column>
+							<Column id="column2" minScreenWidth="Tablet" demandPopin="true">
+								<header>
+									<Label text="{i18n>inicioDeducao}" id="inicioDeducao"/>
+								</header>
+							</Column>
+							<Column id="column3" minScreenWidth="Tablet" demandPopin="true">
+								<header>
+									<Label text="{i18n>fimDeducao}" id="fimDeducao"/>
+								</header>
+							</Column>
+							<Column id="column4" minScreenWidth="Tablet" demandPopin="true">
+								<header>
+									<Label text="{i18n>direito}" id="direito"/>
+								</header>
+							</Column>
+							<Column id="column5" minScreenWidth="Tablet" demandPopin="true">
+								<header>
+									<Label text="{i18n>planejados}" id="planejados"/>
+								</header>
+							</Column>
+							<Column id="column7" minScreenWidth="Tablet" demandPopin="true">
+								<header>
+									<Label text="{i18n>status}" id="status"/>
+								</header>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="{Contigentes>RowType}" id="listItem" press="navigateToDetail">
+								<cells>
+									<ObjectIdentifier title="{Contigentes>Begda}"/>
+									<ObjectIdentifier title="{Contigentes>Endda}"/>
+									<ObjectIdentifier title="{Contigentes>Desta}"/>
+									<ObjectIdentifier title="{Contigentes>Deend}"/>
+									<ObjectIdentifier title="{Contigentes>Anzhl}"/>
+									<ObjectIdentifier title="{Contigentes>Dplan}"/>
+									<ObjectStatus class="statusText" text="{path: 'Contigentes>Status'}" state="{path: 'Contigentes>Status', formatter: '.formatter.statusContingentes'}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

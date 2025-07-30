@@ -1,0 +1,11 @@
+.statusText {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.borderButton {
+  border: 2px solid dodgerblue !important;
+  border-radius: 3px !important;
+  padding: 0;
+  height: 40px;
+}
